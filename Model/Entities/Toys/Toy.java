@@ -3,8 +3,7 @@ package Model.Entities.Toys;
 import Model.Entities.Entity;
 
 public class Toy extends Entity {
-    protected int toyId;
-    protected int weight;
+    protected int weight = 0;
 
     public Toy(String name){
         super(name);
@@ -12,17 +11,9 @@ public class Toy extends Entity {
 
     public Toy(Toy toy){
         this(toy.getName());
-        this.toyId = toy.getToyId();
+        super.id = toy.getId();
         this.weight = toy.getWeight();
         super.count = toy.getCount();
-    }
-
-    public void setToyId(int id){
-        this.toyId = id;
-    }
-
-    public int getToyId(){
-        return this.toyId;
     }
 
     public boolean setWeight(int weight){
@@ -35,5 +26,10 @@ public class Toy extends Entity {
 
     public int getWeight(){
         return this.weight;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + Integer.toString(weight);
     }
 }

@@ -1,11 +1,20 @@
 package Model.Entities;
 
 public abstract class Entity {
+    protected int id = 0;
     protected String name;
     protected int count;
 
     public Entity(String name){
         this.name = name;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return this.id;
     }
 
     public String getName(){
@@ -34,5 +43,10 @@ public abstract class Entity {
             return true;
         }
         else return false;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + ":" + Integer.toString(this.count) + ":";
     }
 }

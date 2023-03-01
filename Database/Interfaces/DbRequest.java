@@ -8,8 +8,8 @@ public interface DbRequest <T extends Entity>
 {
     public void CreateTable();
     public List<T> getAllEntity();
-    public T getEntityById();
-    public List<T> getEntitiesByName();
+    public T getEntityById(int id);
+    public List<T> getEntitiesByName(String name);
     public void addEntity(T entity);
     public void updateEntity(T entity);
     public void removeEntityById(int id);

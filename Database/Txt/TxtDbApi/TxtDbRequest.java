@@ -15,7 +15,7 @@ public class TxtDbRequest<T extends Entity> implements DbRequest<T> {
     private Utilities util;
     EntityFactory <T> factory;
 
-    public TxtDbRequest(EntityFactory <T> factory) {
+    public TxtDbRequest(String path, EntityFactory <T> factory) {
         this.path = path;
         this.util = new Utilities();
         this.factory = factory;
@@ -27,36 +27,44 @@ public class TxtDbRequest<T extends Entity> implements DbRequest<T> {
         File file = new File(this.path);
         if (file.exists()) return;
         else{
-            this.util.WriteFile(this.path, "");
+            this.util.WriteFile(this.path, "0<maxId>\n");
         }
     }
 
     @Override
     public List<T> getAllEntity() {
         StringBuilder data = util.ReadFile(this.path);
+        return getEntities(data);
+    }
+
+    public List<T> getEntities(StringBuilder data){
         List<T> result = new ArrayList<T>();
-        if(data.isEmpty()) return result;
-        String[] stringsData = data.toString().split("\n");
+        String[] stringsData = data.toString().split("<maxId>\n")[1].split("\n");
+        if(stringsData.length == 0) return result;
         Arrays.stream(stringsData).forEach(s -> result.add(factory.createEntity(s)));
         return result;
     }
 
     @Override
-    public T getEntityById() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEntityById'");
+    public T getEntityById(int id) {
+        StringBuilder data = util.ReadFile(this.path);
+        return getEntities(data).stream().filter(t -> t.getId() == id).findFirst().get();
     }
 
     @Override
-    public List<T> getEntitiesByName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEntitiesByName'");
+    public List<T> getEntitiesByName(String name) {
+        StringBuilder data = util.ReadFile(this.path);
+        return getEntities(data).stream().filter(t -> t.getName().toLowerCase().indexOf(name.toLowerCase()) != -1).toList();
     }
 
     @Override
     public void addEntity(T entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addEntity'");
+        StringBuilder data = util.ReadFile(this.path);
+        int maxId = Integer.valueOf(data.toString().split("<maxId>\n")[0]);
+        String newMaxId = Integer.toString(maxId + 1);
+        String entityData = newMaxId + ":" + entity.toString() + "\n";
+        data.append(entityData).replace(0, data.indexOf("<maxId>\n"), newMaxId);
+        util.WriteFile(this.path, data.toString());
     }
 
     @Override

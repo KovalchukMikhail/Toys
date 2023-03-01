@@ -13,7 +13,7 @@ public class ToyFactoryBasic implements EntityFactory<Toy>{
         }
         else{
             Toy toy = new Toy(toyData[1]);
-            toy.setToyId(Integer.valueOf(toyData[0]));
+            toy.setId(Integer.valueOf(toyData[0]));
             toy.setCount(Integer.valueOf(toyData[2]));
             toy.setWeight(Integer.valueOf(toyData[3]));
             return toy;
