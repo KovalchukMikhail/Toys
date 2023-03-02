@@ -32,4 +32,9 @@ public class Toy extends Entity {
     public String toString() {
         return super.toString() + Integer.toString(weight);
     }
+
+    @Override
+    public String getData() {
+        return super.getData() + "Вес вероятности выпадения в %: " + Integer.toString(weight) + "\n";
+    }
 }

@@ -7,9 +7,13 @@ import Controller.Interfaces.Controller;
 public class ConsoleSelectMenuBasic implements ConsoleSelectMenu{
  
     Controller controller;
+    Utilities util;
+    TextMenu menu;
 
-    public ConsoleSelectMenuBasic(Controller controller){
+    public ConsoleSelectMenuBasic(Controller controller, Utilities util, TextMenu menu){
         this.controller = controller;
+        this.util = util;
+        this.menu = menu;
     }
 
 

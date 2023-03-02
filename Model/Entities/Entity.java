@@ -53,4 +53,9 @@ public abstract class Entity {
     public String toString() {
         return this.name + ":" + Integer.toString(this.count) + ":";
     }
+
+    public String getData(){
+        return "Id: " + Integer.toString(this.id) + "\tНазвание: " + this.name + "\n"
+                +"Количество: " + Integer.toString(this.count) + "\n";
+    }
 }

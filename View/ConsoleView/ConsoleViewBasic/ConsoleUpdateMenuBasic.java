@@ -7,9 +7,13 @@ import Controller.Interfaces.Controller;
 public class ConsoleUpdateMenuBasic implements ConsoleUpdateMenu{
 
     Controller controller;
+    Utilities util;
+    TextMenu menu;
 
-    public ConsoleUpdateMenuBasic(Controller controller){
+    public ConsoleUpdateMenuBasic(Controller controller, Utilities util, TextMenu menu){
         this.controller = controller;
+        this.util = util;
+        this.menu = menu;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package View.ConsoleView.ConsoleViewBasic;
 
-public class menu {
+public class TextMenu {
     public String mainMenu = "__________________________\n"
                             + "Введите пункт меню\n"
                             + "1 - Показать все игрушки\n"
@@ -44,7 +44,7 @@ public class menu {
                             + "4 - Предварительный просмотр и сохранение\n"
                             + "0 - Назад в меню\n";
 
-    public String prenoteMenu = "__________________________\n"
+    public String checkMenu = "__________________________\n"
                                 + "Введите пункт меню\n"
                                 + "1 - Подтведить действие\n"
                                 + "0 - Назад в меню\n";
@@ -53,6 +53,10 @@ public class menu {
 
     public String errorText = "Вы ввели некорректное значение\n";
 
-    public String requestToContinue = "для продолжения нажмите Enter\n";
+    public String requestToContinue = "для продолжения введите любое значение\n";
+
+    public String requestData = "Введите данные:\n";
+
+    public String previewText = "Предварительный просмотр:\n";
 
 }

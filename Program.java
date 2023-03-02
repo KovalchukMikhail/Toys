@@ -18,7 +18,7 @@ public class Program {
         String path = "Database/Txt/TxtDb/Database.txt";
         EntityFactory<Toy> factory = new ToyFactoryBasic();
         DbRequest<Toy> db = new TxtDbRequest<Toy>(path, factory);
-        Infrastructure infrastructure = new InfrastructureBasic(db);
+        Infrastructure infrastructure = new InfrastructureBasic(db, factory);
         Controller controller = new ControllerBasic(infrastructure);
         View view = new ConsoleMainMenuBasic(controller);
 

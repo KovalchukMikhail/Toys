@@ -1,12 +1,16 @@
 package View.ConsoleView.ConsoleViewBasic;
 
+import java.util.List;
+
 import Controller.Interfaces.Controller;
+import Model.Entities.Entity;
 import View.ConsoleView.Interfaces.ConsoleAddMenu;
 import View.ConsoleView.Interfaces.ConsoleGameMenu;
 import View.ConsoleView.Interfaces.ConsoleMainMenu;
 import View.ConsoleView.Interfaces.ConsoleRemoveMenu;
 import View.ConsoleView.Interfaces.ConsoleSelectMenu;
 import View.ConsoleView.Interfaces.ConsoleUpdateMenu;
+import Model.Entities.Entity;
 
 
 public class ConsoleMainMenuBasic implements ConsoleMainMenu{
@@ -16,26 +20,63 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
     ConsoleRemoveMenu removeMenu;
     ConsoleUpdateMenu updateMenu;
     ConsoleSelectMenu selectMenu;
+    Utilities util;
+    TextMenu menu;
+    
+
 
     public ConsoleMainMenuBasic(Controller controller){
         this.controller = controller;
-        addMenu = new ConsoleAddMenuBasic(controller);
-        gameMenu = new ConsoleGameMenuBasic(controller);
-        removeMenu = new ConsoleRemoveMenuBasic(controller);
-        updateMenu = new ConsoleUpdateMenuBasic(controller);
-        selectMenu = new ConsoleSelectMenuBasic(controller);
+        util = new Utilities();
+        menu = new TextMenu();
+        addMenu = new ConsoleAddMenuBasic(this.controller, util, menu);
+        gameMenu = new ConsoleGameMenuBasic(this.controller, util, menu);
+        removeMenu = new ConsoleRemoveMenuBasic(this.controller, util, menu);
+        updateMenu = new ConsoleUpdateMenuBasic(this.controller, util, menu);
+        selectMenu = new ConsoleSelectMenuBasic(this.controller, util, menu);
     }
 
     @Override
     public void runMainMenu() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runMainMenu'");
+        while (true) {
+            util.showText(menu.mainMenu);
+            int answer = util.inputInt();
+            switch (answer) {
+                case 1:
+                    showAllToys();
+                    break;
+                case 2:
+                    gameMenu.runGameMenu();
+                    break;
+                case 3:
+                    addMenu.runAddMenu();
+                    break;
+                case 4:
+                    selectMenu.runSelectMenu();
+                    break;
+                case 5:
+                    updateMenu.runUpdateMenu();
+                    break;
+                case 6:
+                    removeMenu.rumRemoveMenu();
+                    break;
+                case 0:
+                    return;
+                default:
+                    util.showText(menu.errorText);
+                    break;
+            }
+        }
     }
 
     @Override
     public void showAllToys() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'showAllToys'");
+        List<Entity> entities = controller.getAllEntities();
+        for (Entity entity : entities) {
+            util.showText(entity.getData());
+        }
+        util.showText(menu.requestToContinue);
+        util.inputString();
     }
     
 }
