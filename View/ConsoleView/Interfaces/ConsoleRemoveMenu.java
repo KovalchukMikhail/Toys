@@ -1,5 +1,5 @@
 package View.ConsoleView.Interfaces;
 
 public interface ConsoleRemoveMenu {
-    public void rumRemoveMenu();
+    public void runRemoveMenu();
 }

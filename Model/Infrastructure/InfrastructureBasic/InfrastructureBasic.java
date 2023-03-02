@@ -15,6 +15,7 @@ public class InfrastructureBasic implements Infrastructure{
     public InfrastructureBasic(DbRequest db, EntityFactory factory){
         this.db = db;
         this.factory = factory;
+        db.CreateTable();
     }
 
     public List<Entity> getAllEntities(){
@@ -29,5 +30,30 @@ public class InfrastructureBasic implements Infrastructure{
     @Override
     public void addEntity(Entity entity) {
         db.addEntity(entity);
+    }
+
+    @Override
+    public Entity getEntityById(int id) {
+        return db.getEntityById(id);
+    }
+
+    @Override
+    public List<Entity> getEntitiesByName(String name) {
+        return db.getEntitiesByName(name);
+    }
+
+    @Override
+    public void updateEntity(Entity entity) {
+        db.updateEntity(entity);
+    }
+
+    @Override
+    public void removeEntityById(int id) {
+        db.removeEntityById(id);
+    }
+
+    @Override
+    public void removeAllEntity() {
+        db.removeAllEntity();
     }
 }

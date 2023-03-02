@@ -58,7 +58,7 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
                     updateMenu.runUpdateMenu();
                     break;
                 case 6:
-                    removeMenu.rumRemoveMenu();
+                    removeMenu.runRemoveMenu();
                     break;
                 case 0:
                     return;
@@ -72,6 +72,9 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
     @Override
     public void showAllToys() {
         List<Entity> entities = controller.getAllEntities();
+        if(entities.size() == 0){
+            util.showText(menu.notFound);
+        }
         for (Entity entity : entities) {
             util.showText(entity.getData());
         }

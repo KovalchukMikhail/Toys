@@ -49,7 +49,7 @@ public class TextMenu {
                                 + "1 - Подтведить действие\n"
                                 + "0 - Назад в меню\n";
 
-    public String requestId = "Введите Id игрушки\n";
+    public String requestId = "Введите Id игрушки или 0 для возврата в меню\n";
 
     public String errorText = "Вы ввели некорректное значение\n";
 
@@ -58,5 +58,7 @@ public class TextMenu {
     public String requestData = "Введите данные:\n";
 
     public String previewText = "Предварительный просмотр:\n";
+
+    public String notFound = "Данные соответствующие запросу не найдены:\n";
 
 }

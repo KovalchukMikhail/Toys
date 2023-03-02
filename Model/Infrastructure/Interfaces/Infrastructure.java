@@ -10,4 +10,14 @@ public interface Infrastructure {
     public Entity createEntity(String data);
 
     public void addEntity(Entity entity);
+
+    public Entity getEntityById(int id);
+
+    public List<Entity> getEntitiesByName(String name);
+
+    public void updateEntity(Entity entity);
+
+    public void removeEntityById(int id);
+
+    public void removeAllEntity();
 }

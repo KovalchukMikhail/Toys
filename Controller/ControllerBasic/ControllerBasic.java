@@ -24,5 +24,31 @@ public class ControllerBasic implements Controller{
         infrastructure.addEntity(entity);
     }
 
+    @Override
+    public Entity getEntityById(int id) {
+        return infrastructure.getEntityById(id);
+    }
+
+    @Override
+    public List<Entity> getEntitiesByName(String name) {
+        return infrastructure.getEntitiesByName(name);
+    }
+
+    @Override
+    public void updateEntity(String data) {
+        Entity entity = infrastructure.createEntity(data);
+        infrastructure.updateEntity(entity);
+    }
+
+    @Override
+    public void removeEntityById(int id) {
+        infrastructure.removeEntityById(id);
+    }
+
+    @Override
+    public void removeAllEntity() {
+        infrastructure.removeAllEntity();
+    }
+
     
 }

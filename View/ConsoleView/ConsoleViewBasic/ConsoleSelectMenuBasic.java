@@ -1,7 +1,11 @@
 package View.ConsoleView.ConsoleViewBasic;
 
 import View.ConsoleView.Interfaces.ConsoleSelectMenu;
+
+import java.util.List;
+
 import Controller.Interfaces.Controller;
+import Model.Entities.Entity;
 
 
 public class ConsoleSelectMenuBasic implements ConsoleSelectMenu{
@@ -19,8 +23,45 @@ public class ConsoleSelectMenuBasic implements ConsoleSelectMenu{
 
     @Override
     public void runSelectMenu() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'runSelectMenu'");
+        while (true) {
+            util.showText(menu.selectMenu);
+            int answer = util.inputInt();
+            switch (answer) {
+                case 1:
+                    util.showText(menu.requestData);
+                    int id = util.inputInt();
+                    if(id > 0){
+                        Entity entity = controller.getEntityById(id);
+                        if (entity != null){
+                            util.showText(entity.getData());
+                            util.showText(menu.requestToContinue);
+                            util.inputString();
+                        }
+                        else util.showText(menu.notFound);
+                    }
+                    else util.showText(menu.errorText);
+                    break;
+                case 2:
+                    util.showText(menu.requestData);
+                    String name = util.inputString();
+                    if(!name.equals("")){
+                        List<Entity> entities = controller.getEntitiesByName(name);
+                        if (entities.size() != 0){
+                            entities.stream().forEach(e -> util.showText(e.getData()));
+                            util.showText(menu.requestToContinue);
+                            util.inputString();
+                        }
+                        else util.showText(menu.notFound);
+                    }
+                    else util.showText(menu.errorText);
+                    break;
+                case 0:
+                    return;
+                default:
+                    util.showText(menu.errorText);
+                    break;
+            }
+        }
     }
     
 }

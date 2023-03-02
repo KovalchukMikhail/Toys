@@ -39,16 +39,18 @@ public class TxtDbRequest<T extends Entity> implements DbRequest<T> {
 
     public List<T> getEntities(StringBuilder data){
         List<T> result = new ArrayList<T>();
-        String[] stringsData = data.toString().split("<maxId>\n")[1].split("\n");
-        if(stringsData.length == 0) return result;
-        Arrays.stream(stringsData).forEach(s -> result.add(factory.createEntity(s)));
+        String[] stringsData = data.toString().split("<maxId>\n");
+        if(stringsData.length == 1) return result;
+        String[] entitiesData = stringsData[1].split("\n");
+        Arrays.stream(entitiesData).forEach(s -> result.add(factory.createEntity(s)));
         return result;
     }
 
     @Override
     public T getEntityById(int id) {
         StringBuilder data = util.ReadFile(this.path);
-        return getEntities(data).stream().filter(t -> t.getId() == id).findFirst().get();
+        for (T entity : getEntities(data)) if(entity.getId() == id) return entity;
+        return null;
     }
 
     @Override
