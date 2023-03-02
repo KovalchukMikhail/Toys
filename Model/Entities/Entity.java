@@ -21,6 +21,10 @@ public abstract class Entity {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public boolean setCount(int count){
         if (count >= 0){
             this.count = count; 

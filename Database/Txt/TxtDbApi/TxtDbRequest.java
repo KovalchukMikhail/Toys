@@ -32,7 +32,7 @@ public class TxtDbRequest<T extends Entity> implements DbRequest<T> {
     }
 
     @Override
-    public List<T> getAllEntity() {
+    public List<T> getAllEntities() {
         StringBuilder data = util.ReadFile(this.path);
         return getEntities(data);
     }
@@ -69,20 +69,41 @@ public class TxtDbRequest<T extends Entity> implements DbRequest<T> {
 
     @Override
     public void updateEntity(T entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateEntity'");
+        StringBuilder data = util.ReadFile(this.path);
+        List<T> entities = getEntities(data);
+        String resultStr = data.toString();
+        for (T t : entities) {
+            if(t.getId() == entity.getId()){
+                String oldEntityData = Integer.toString(t.getId()) + ":" + t.toString();
+                String newEntityData = Integer.toString(entity.getId()) + ":" + entity.toString();
+                resultStr = resultStr.replace(oldEntityData, newEntityData);
+                break;
+            }
+        }
+        util.WriteFile(this.path, resultStr);
     }
 
     @Override
     public void removeEntityById(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeEntityById'");
+        StringBuilder data = util.ReadFile(this.path);
+        List<T> entities = getEntities(data);
+        String resultStr = data.toString();
+        for (T t : entities) {
+            if(t.getId() == id){
+                String oldEntityData = Integer.toString(t.getId()) + ":" + t.toString() + "\n";
+                resultStr = resultStr.replace(oldEntityData, "");
+                break;
+            }
+        }
+        util.WriteFile(this.path, resultStr);
     }
 
     @Override
     public void removeAllEntity() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeAllEntity'");
+        StringBuilder data = util.ReadFile(this.path);
+        String maxId = data.toString().split("<maxId>\n")[0];
+        this.util.WriteFile(this.path, maxId + "<maxId>\n");
     }
+
     
 }

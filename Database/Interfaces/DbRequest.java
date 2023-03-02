@@ -7,7 +7,7 @@ import Model.Entities.Entity;
 public interface DbRequest <T extends Entity>
 {
     public void CreateTable();
-    public List<T> getAllEntity();
+    public List<T> getAllEntities();
     public T getEntityById(int id);
     public List<T> getEntitiesByName(String name);
     public void addEntity(T entity);
