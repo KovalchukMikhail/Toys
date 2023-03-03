@@ -3,14 +3,13 @@ package View.ConsoleView.ConsoleViewBasic;
 import java.util.List;
 
 import Controller.Interfaces.Controller;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import View.ConsoleView.Interfaces.ConsoleAddMenu;
 import View.ConsoleView.Interfaces.ConsoleGameMenu;
 import View.ConsoleView.Interfaces.ConsoleMainMenu;
 import View.ConsoleView.Interfaces.ConsoleRemoveMenu;
 import View.ConsoleView.Interfaces.ConsoleSelectMenu;
 import View.ConsoleView.Interfaces.ConsoleUpdateMenu;
-import Model.Entities.Entity;
 
 
 public class ConsoleMainMenuBasic implements ConsoleMainMenu{

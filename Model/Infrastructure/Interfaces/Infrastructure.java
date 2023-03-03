@@ -1,7 +1,8 @@
 package Model.Infrastructure.Interfaces;
 
 import java.util.List;
-import Model.Entities.Entity;
+
+import Model.Entities.AbstractClasses.Entity;
 
 
 public interface Infrastructure {

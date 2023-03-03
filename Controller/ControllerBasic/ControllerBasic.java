@@ -3,7 +3,7 @@ package Controller.ControllerBasic;
 import java.util.List;
 
 import Controller.Interfaces.Controller;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import Model.Infrastructure.Interfaces.Infrastructure;
 
 public class ControllerBasic implements Controller{

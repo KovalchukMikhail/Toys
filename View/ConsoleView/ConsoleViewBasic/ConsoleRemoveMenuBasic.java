@@ -2,7 +2,7 @@ package View.ConsoleView.ConsoleViewBasic;
 
 import View.ConsoleView.Interfaces.ConsoleRemoveMenu;
 import Controller.Interfaces.Controller;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 
 
 public class ConsoleRemoveMenuBasic implements ConsoleRemoveMenu{

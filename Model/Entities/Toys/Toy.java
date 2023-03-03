@@ -1,8 +1,9 @@
 package Model.Entities.Toys;
 
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
+import Model.Entities.Interfaces.WeigthForGame;
 
-public class Toy extends Entity {
+public class Toy extends Entity implements WeigthForGame{
     protected int weight = 0;
 
     public Toy(String name){
@@ -36,5 +37,14 @@ public class Toy extends Entity {
     @Override
     public String getData() {
         return super.getData() + "Вес вероятности выпадения в %: " + Integer.toString(weight) + "\n";
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Toy toy = new Toy(this.name);
+        toy.setId(this.id);
+        toy.setWeight(this.weight);
+        toy.setCount(this.count);
+        return (Object)toy;
     }
 }

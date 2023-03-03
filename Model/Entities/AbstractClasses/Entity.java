@@ -1,9 +1,9 @@
-package Model.Entities;
+package Model.Entities.AbstractClasses;
 
-public abstract class Entity {
+public abstract class Entity implements Cloneable{
     protected int id = 0;
-    protected String name;
-    protected int count;
+    protected String name = "";
+    protected int count = 0;
 
     public Entity(String name){
         this.name = name;
@@ -58,4 +58,7 @@ public abstract class Entity {
         return "Id: " + Integer.toString(this.id) + "\tНазвание: " + this.name + "\n"
                 +"Количество: " + Integer.toString(this.count) + "\n";
     }
+
+    @Override
+    public abstract Object clone() throws CloneNotSupportedException;
 }

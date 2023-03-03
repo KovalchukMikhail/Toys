@@ -5,7 +5,7 @@ import View.ConsoleView.Interfaces.ConsoleSelectMenu;
 import java.util.List;
 
 import Controller.Interfaces.Controller;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 
 
 public class ConsoleSelectMenuBasic implements ConsoleSelectMenu{

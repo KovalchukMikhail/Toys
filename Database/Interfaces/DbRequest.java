@@ -2,7 +2,7 @@ package Database.Interfaces;
 
 import java.util.List;
 
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 
 public interface DbRequest <T extends Entity>
 {

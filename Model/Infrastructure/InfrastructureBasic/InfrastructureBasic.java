@@ -3,7 +3,7 @@ package Model.Infrastructure.InfrastructureBasic;
 import java.util.List;
 
 import Database.Interfaces.DbRequest;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import Model.Infrastructure.Interfaces.EntityFactory;
 import Model.Infrastructure.Interfaces.Infrastructure;
 

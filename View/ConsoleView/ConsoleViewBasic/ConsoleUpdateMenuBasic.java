@@ -2,7 +2,7 @@ package View.ConsoleView.ConsoleViewBasic;
 
 import View.ConsoleView.Interfaces.ConsoleUpdateMenu;
 import Controller.Interfaces.Controller;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import Model.Entities.Toys.Toy;
 
 

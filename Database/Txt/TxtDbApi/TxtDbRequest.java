@@ -6,7 +6,7 @@ import java.util.List;
 import java.io.File;
 
 import Database.Interfaces.DbRequest;
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import Model.Infrastructure.Interfaces.EntityFactory;
 
 public class TxtDbRequest<T extends Entity> implements DbRequest<T> {

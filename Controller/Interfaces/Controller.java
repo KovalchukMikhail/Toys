@@ -1,7 +1,8 @@
 package Controller.Interfaces;
 
 import java.util.List;
-import Model.Entities.Entity;
+
+import Model.Entities.AbstractClasses.Entity;
 
 public interface Controller {
     public List <Entity> getAllEntities();

@@ -1,6 +1,6 @@
 package Model.Infrastructure.InfrastructureBasic.Factories;
 
-import Model.Entities.Entity;
+import Model.Entities.AbstractClasses.Entity;
 import Model.Entities.Toys.Toy;
 import Model.Infrastructure.Interfaces.EntityFactory;
 
