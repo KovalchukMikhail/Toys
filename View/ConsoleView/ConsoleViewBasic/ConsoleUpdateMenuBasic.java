@@ -26,39 +26,27 @@ public class ConsoleUpdateMenuBasic implements ConsoleUpdateMenu{
         String name = toy.getName();
         int count = toy.getCount();
         int weight = toy.getWeight();
+        int temp = 0;
         while (true) {
-            util.showText(menu.updateMenu);
-            int answer = util.inputInt();
+            int answer = util.getPositiveIntAnswer(menu.updateMenu, 0, 4);
             switch (answer) {
                 case 1:
                     util.showText(menu.requestData);
                     name = util.inputString();
                     break;
                 case 2:
-                    util.showText(menu.requestData);
-                    answer = util.inputInt();
-                    if (answer < 0) util.showText(menu.errorText);
-                    else count = answer;
+                    temp = util.getPositiveIntAnswer(menu.requestData, 0, Integer.MAX_VALUE);
+                    count = temp > 0? temp: count;
                     break;
                 case 3:
-                    util.showText(menu.requestData);
-                    answer = util.inputInt();
-                    if (answer < 0 || answer > 100) util.showText(menu.errorText);
-                    else weight = answer;
-                break;
+                    temp = util.getPositiveIntAnswer(menu.requestData, 0, 100);
+                    weight = temp > 0? temp: weight;
+                    break;
                 case 4:
-                    util.showText(menu.previewText);
-                    util.preview(name, count, weight);
-                    if(util.checkMenu()){
-                        String data = Integer.toString(toy.getId()) + ":" + name + ":" + Integer.toString(count) + ":" + Integer.toString(weight);
-                        controller.updateEntity(data);
-                    }
+                    tryUpdateToy(menu.previewText, toy, name, count, weight);
                     break;
                 case 0:
                     return;
-                default:
-                    util.showText(menu.errorText);
-                    break;
             }
         }
     }
@@ -84,6 +72,15 @@ public class ConsoleUpdateMenuBasic implements ConsoleUpdateMenu{
                 else util.showText(menu.notFound);
             }
             else util.showText(menu.errorText);
+        }
+    }
+
+    public void tryUpdateToy(String request, Toy toy, String name, int count, int weight){
+        util.showText(request);
+        util.preview(name, count, weight);
+        if(util.checkMenu()){
+            String data = Integer.toString(toy.getId()) + ":" + name + ":" + Integer.toString(count) + ":" + Integer.toString(weight);
+            controller.updateEntity(data);
         }
     }
 }

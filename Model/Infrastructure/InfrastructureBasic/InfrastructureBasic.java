@@ -4,6 +4,7 @@ import java.util.List;
 
 import Database.Interfaces.DbRequest;
 import Model.Entities.AbstractClasses.Entity;
+import Model.Entities.Interfaces.Game;
 import Model.Infrastructure.Interfaces.EntityFactory;
 import Model.Infrastructure.Interfaces.Infrastructure;
 
@@ -11,11 +12,14 @@ public class InfrastructureBasic implements Infrastructure{
     
     DbRequest db;
     EntityFactory factory;
+    Game game;
 
-    public InfrastructureBasic(DbRequest db, EntityFactory factory){
+    public InfrastructureBasic(DbRequest db, EntityFactory factory, Game game){
         this.db = db;
         this.factory = factory;
-        db.CreateTable();
+        this.game = game;
+        db.CreateTableEntity();
+        db.CreateTablePrize();
     }
 
     public List<Entity> getAllEntities(){
@@ -55,5 +59,30 @@ public class InfrastructureBasic implements Infrastructure{
     @Override
     public void removeAllEntity() {
         db.removeAllEntity();
+    }
+
+    @Override
+    public boolean checkGame() {
+        return !game.getAllAwardData().isEmpty();
+    }
+
+    @Override
+    public Entity tryGetAword() {
+        return game.getAward();
+    }
+
+    @Override
+    public void addEntityToPrizeTable(Entity entite) {
+        db.addPrizes(entite);
+    }
+
+    @Override
+    public void addEntityToGameList(Entity entity) {
+        game.addAward(entity);
+    }
+
+    @Override
+    public void removeEntityFromGameList(Entity entite) {
+        game.removeAwardbyId(entite.getId());
     }
 }

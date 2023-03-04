@@ -37,6 +37,16 @@ public class Utilities {
         return answer;
     }
 
+    public int getPositiveIntAnswer(String request, int min, int max){
+        showText(request);
+        int answer = inputInt();
+        if (answer < min || answer > max){
+            showText(menu.errorText);
+            return -1;
+        }
+        return answer;
+    }
+
 
 
     public void showText(String text){
@@ -66,5 +76,11 @@ public class Utilities {
                     break;
             }   
         }
+    }
+
+    public void requestToContinue(String request){
+        showText(request);
+        showText(menu.requestToContinue);
+        inputString();
     }
 }

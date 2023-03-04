@@ -21,40 +21,37 @@ public class ConsoleAddMenuBasic implements ConsoleAddMenu{
         String name = "Noname";
         int count = 0;
         int weight = 0;
+        int temp = 0;
         while (true) {
-            util.showText(menu.addMenu);
-            int answer = util.inputInt();
+            int answer = util.getPositiveIntAnswer(menu.addMenu, 0, 4);
             switch (answer) {
                 case 1:
                     util.showText(menu.requestData);
                     name = util.inputString();
                     break;
                 case 2:
-                    util.showText(menu.requestData);
-                    answer = util.inputInt();
-                    if (answer < 0) util.showText(menu.errorText);
-                    else count = answer;
+                    temp = util.getPositiveIntAnswer(menu.requestData, 0, Integer.MAX_VALUE);
+                    count = temp > 0? temp: 0;
                     break;
                 case 3:
-                    util.showText(menu.requestData);
-                    answer = util.inputInt();
-                    if (answer < 0 || answer > 100) util.showText(menu.errorText);
-                    else weight = answer;
+                    temp = util.getPositiveIntAnswer(menu.requestData, 0, 100);
+                    weight = temp > 0? temp: 0;
                 break;
                 case 4:
-                    util.showText(menu.previewText);
-                    util.preview(name, count, weight);
-                    if(util.checkMenu()){
-                        String data = name + ":" + Integer.toString(count) + ":" + Integer.toString(weight);
-                        controller.addEntity(data);
-                    }
+                    tryAddToy(menu.previewText, name, count, weight);
                     break;
                 case 0:
                     return;
-                default:
-                    util.showText(menu.errorText);
-                    break;
             }
+        }
+    }
+
+    public void tryAddToy(String request, String name, int count, int weight){
+        util.showText(menu.previewText);
+        util.preview(name, count, weight);
+        if(util.checkMenu()){
+            String data = name + ":" + Integer.toString(count) + ":" + Integer.toString(weight);
+            controller.addEntity(data);
         }
     }
     

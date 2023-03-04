@@ -21,4 +21,14 @@ public interface Infrastructure {
     public void removeEntityById(int id);
 
     public void removeAllEntity();
+
+    public boolean checkGame();
+
+    public Entity tryGetAword();
+
+    public void addEntityToPrizeTable(Entity entite);
+
+    public void addEntityToGameList(Entity entity);
+
+    public void removeEntityFromGameList(Entity entite);
 }

@@ -1,6 +1,9 @@
 package View.ConsoleView.ConsoleViewBasic;
 
 import View.ConsoleView.Interfaces.ConsoleGameMenu;
+
+import java.util.List;
+
 import Controller.Interfaces.Controller;
 import Model.Entities.AbstractClasses.Entity;
 
@@ -21,44 +24,83 @@ public class ConsoleGameMenuBasic implements ConsoleGameMenu{
     @Override
     public void runGameMenu() {
         while (true) {
-            util.showText(menu.gameMenu);
-            int answer = util.inputInt();
+            int answer = util.getPositiveIntAnswer(menu.gameMenu, 0, 7);
             switch (answer) {
                 case 1:
-                    if(controller.requestGame()){
-                        Entity entity = controller.runGame();
-                        if(entity == null) util.showText(menu.loserText);
-                        else{
-                            util.showText(menu.winText);
-                            util.showText(entity.getName() + "\n");
-                            util.showText(menu.requestToContinue);
-                            util.inputString();
-                        }
-                    }
-                    util.showText(menu.thereIsNoAward);
+                    tryGame();
                     break;
                 case 2:
-                    gameMenu.runGameMenu();
+                    tryAddEntityToGameList();
                     break;
                 case 3:
-                    addMenu.runAddMenu();
+                    // showEntityGameList(controller.getEntityGameList());
                     break;
                 case 4:
-                    selectMenu.runSelectMenu();
+                    trySelectEntityByIdForGame();
                     break;
                 case 5:
-                    updateMenu.runUpdateMenu();
+                    trySelectEntityByIndexForGame();
                     break;
                 case 6:
-                    removeMenu.runRemoveMenu();
+                    tryRemoveEntityByIdFromGameList();
+                    break;
+                case 7:
+                    RemoveAllEntityFromGameList();
                     break;
                 case 0:
                     return;
-                default:
-                    util.showText(menu.errorText);
-                    break;
             }
         }
+    }
+
+    public void tryGame(){
+        if(controller.checkGame()){
+            Entity entity = controller.runGame();
+            if(entity == null){
+                util.requestToContinue(menu.loserText);
+            }
+            else{
+                util.showText(menu.winText);
+                util.requestToContinue(entity.getName() + "\n");
+            }
+        }
+        else util.requestToContinue(menu.thereIsNoAward);
+    }
+
+    public void tryAddEntityToGameList(){
+        util.showText(menu.requestId);
+        int id = util.inputInt();
+        if(id > 0){
+            Entity entity = controller.getEntityById(id);
+            if (entity == null) util.showText(menu.notFound);
+            else if (entity.getCount() == 0) util.showText(menu.notFound);
+            else{
+                util.showText(entity.getData());
+                if(util.checkMenu()) controller.addEntityToGameList(entity);
+            }
+        }
+        else util.showText(menu.errorText);
+    }
+
+
+    public void showEntityGameList(List entities){
+        
+    }
+
+    public void trySelectEntityByIdForGame(){
+
+    }
+
+    public void trySelectEntityByIndexForGame(){
+
+    }
+
+    public void tryRemoveEntityByIdFromGameList(){
+
+    }
+
+    public void RemoveAllEntityFromGameList(){
+
     }
     
 }

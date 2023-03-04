@@ -14,7 +14,7 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
 
     @Override
     public boolean addAward(T entity) {
-        if(entity.getCount() > 0){
+        if(entity.getCount() > 0 && !awards.contains(entity)){
             awards.add(entity);
             return true;
         }
@@ -25,6 +25,7 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
     public void removeAwardbyId(int id) {
         for (T entity : awards) {
             if(entity.getId() == id){
+                if(awards.get(currentIndex).getId() == id) currentIndex = 0;
                 awards.remove(entity);
                 return;
             }
@@ -34,6 +35,7 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
     @Override
     public void removeAllAwards() {
         awards.clear();
+        currentIndex = 0;
     }
 
     @Override
@@ -63,12 +65,15 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
     }
 
     @Override
+    public List<T> getAllAwards() {
+        return awards;
+    }
+
+    @Override
     public T getAward() {
         if(!awards.isEmpty()){
             T entity = awards.get(currentIndex);
             if(requestAward(entity.getWeight())){
-                entity.setCount(entity.getCount() - 1);
-                if(entity.getCount() == 0) removeAwardbyId(entity.getId());
                 return entity;
             }  
         }

@@ -66,6 +66,7 @@ public class TextMenu {
     public String previewText = "Предварительный просмотр:\n";
 
     public String notFound = "Данные соответствующие запросу не найдены:\n";
+    public String thereIsNoStuff = "Недостаточное колличество:\n";
     public String thereIsNoAward = "В списке нет призов для розыгрыша\n";
     public String loserText = "Увы приз остается у нас\n";
     public String winText = "Вы выйграли\n";

@@ -38,8 +38,7 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
     @Override
     public void runMainMenu() {
         while (true) {
-            util.showText(menu.mainMenu);
-            int answer = util.inputInt();
+            int answer = util.getPositiveIntAnswer(menu.mainMenu, 0, 6);
             switch (answer) {
                 case 1:
                     showAllToys();
@@ -61,9 +60,6 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
                     break;
                 case 0:
                     return;
-                default:
-                    util.showText(menu.errorText);
-                    break;
             }
         }
     }
@@ -72,13 +68,12 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
     public void showAllToys() {
         List<Entity> entities = controller.getAllEntities();
         if(entities.size() == 0){
-            util.showText(menu.notFound);
+            util.requestToContinue(menu.notFound);
         }
         for (Entity entity : entities) {
             util.showText(entity.getData());
         }
-        util.showText(menu.requestToContinue);
-        util.inputString();
+        util.requestToContinue("");
     }
     
 }

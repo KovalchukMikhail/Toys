@@ -18,4 +18,10 @@ public interface Controller {
     public void removeEntityById(int id);
 
     public void removeAllEntity();
+
+    public boolean checkGame();
+
+    public Entity runGame();
+
+    public void addEntityToGameList(Entity entity);
 }

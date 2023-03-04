@@ -50,5 +50,30 @@ public class ControllerBasic implements Controller{
         infrastructure.removeAllEntity();
     }
 
+    @Override
+    public boolean checkGame() {
+        return infrastructure.checkGame();
+    }
+
+    @Override
+    public Entity runGame() {
+        Entity entite = infrastructure.tryGetAword();
+        if (entite == null) return null;
+        else{
+            infrastructure.addEntityToPrizeTable(entite);
+            entite.setCount(entite.getCount() - 1);
+            if(entite.getCount() == 0){
+                infrastructure.removeEntityFromGameList(entite);
+            }
+            infrastructure.updateEntity(entite);
+            return entite;
+        }
+    }
+
+    @Override
+    public void addEntityToGameList(Entity entity) {
+        infrastructure.addEntityToGameList(entity);
+    }
+
     
 }

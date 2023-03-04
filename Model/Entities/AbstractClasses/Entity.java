@@ -61,4 +61,13 @@ public abstract class Entity implements Cloneable{
 
     @Override
     public abstract Object clone() throws CloneNotSupportedException;
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Entity){
+            Entity entity = (Entity)obj;
+            return entity.getId() == this.id;
+        }
+        return false;
+    }
 }

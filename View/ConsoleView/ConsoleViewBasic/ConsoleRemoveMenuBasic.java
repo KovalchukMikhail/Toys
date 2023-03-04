@@ -25,21 +25,10 @@ public class ConsoleRemoveMenuBasic implements ConsoleRemoveMenu{
             int answer = util.inputInt();
             switch (answer) {
                 case 1:
-                    util.showText(menu.requestData);
-                    int id = util.inputInt();
-                    if(id > 0){
-                        Entity entity = controller.getEntityById(id);
-                        if (entity != null){
-                            util.showText(entity.getData());
-                            if(util.checkMenu()) controller.removeEntityById(id);
-                        }
-                        else util.showText(menu.notFound);
-                    }
-                    else util.showText(menu.errorText);
+                    removeById();
                     break;
                 case 2:
-                    util.showText(menu.checkMenu);
-                    if(util.checkMenu()) controller.removeAllEntity();
+                    removeAll();
                     break;
                 case 0:
                     return;
@@ -49,5 +38,25 @@ public class ConsoleRemoveMenuBasic implements ConsoleRemoveMenu{
             }
         }
     }
+
+    public void removeById(){
+        util.showText(menu.requestData);
+        int id = util.inputInt();
+        if(id > 0){
+            Entity entity = controller.getEntityById(id);
+            if (entity != null){
+                util.showText(entity.getData());
+                if(util.checkMenu()) controller.removeEntityById(id);
+            }
+            else util.showText(menu.notFound);
+        }
+        else util.showText(menu.errorText);
+    }
+
     
+    public void removeAll(){
+        util.showText(menu.checkMenu);
+        if(util.checkMenu()) controller.removeAllEntity();
+    }
+
 }
