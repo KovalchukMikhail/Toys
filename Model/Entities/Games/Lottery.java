@@ -22,14 +22,15 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
     }
 
     @Override
-    public void removeAwardbyId(int id) {
+    public boolean removeAwardbyId(int id) {
         for (T entity : awards) {
             if(entity.getId() == id){
                 if(awards.get(currentIndex).getId() == id) currentIndex = 0;
                 awards.remove(entity);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     @Override
@@ -39,27 +40,31 @@ public class Lottery <T extends Entity & WeigthForGame> implements Game <T>{
     }
 
     @Override
-    public void chooseAwordById(int id) {
+    public boolean setAwordById(int id) {
         for (int i = 0; i < awards.size(); i++){
             if(awards.get(i).getId() == id){
                 currentIndex = i;
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     @Override
-    public void chooseAwardByIndex(int index) {
-        if(index < awards.size()){
-            currentIndex = index;
+    public boolean setAwardByIndex(int index) {
+        if(index <= awards.size() && index > 0){
+            currentIndex = --index;
+            return true;
         }
+        return false;
     }
 
     @Override
     public String getAllAwardData() {
         StringBuilder data = new StringBuilder();
-        for (T entity : awards) {
-            data.append("1. " + entity.getData());
+        int size = awards.size();
+        for (int i = 0; i < size; i++) {
+            data.append(Integer.toString(i + 1) + ". " + awards.get(i).getData() + "\n");
         }
         return data.toString();
     }

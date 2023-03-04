@@ -4,7 +4,7 @@ public class TextMenu {
     public String mainMenu = "__________________________\n"
                             + "Введите пункт меню\n"
                             + "1 - Показать все игрушки\n"
-                            + "2 - Играть\n"
+                            + "2 - Игра\n"
                             + "3 - Добавить игрушку\n"
                             + "4 - Поиск игрушек\n"
                             + "5 - Изменение данных игрушки\n"
@@ -57,6 +57,8 @@ public class TextMenu {
 
     public String requestId = "Введите Id игрушки или 0 для возврата в меню\n";
 
+    public String requestIndex = "Введите Index игрушки или 0 для возврата в меню\n";
+
     public String errorText = "Вы ввели некорректное значение\n";
 
     public String requestToContinue = "для продолжения введите любое значение\n";
@@ -70,5 +72,5 @@ public class TextMenu {
     public String thereIsNoAward = "В списке нет призов для розыгрыша\n";
     public String loserText = "Увы приз остается у нас\n";
     public String winText = "Вы выйграли\n";
-
+    public String success = "Действие успешно выполнено";
 }

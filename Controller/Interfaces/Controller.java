@@ -24,4 +24,14 @@ public interface Controller {
     public Entity runGame();
 
     public void addEntityToGameList(Entity entity);
+
+    public String getGameEntityList();
+
+    public boolean trySetEntityByIdForGame(int id);
+
+    public boolean trySetEntityByIndexForGame(int index);
+
+    public boolean tryRemoveEntityByIdFromGameList(int id);
+
+    public void tryRemoveAllEntityFromGameList();
 }

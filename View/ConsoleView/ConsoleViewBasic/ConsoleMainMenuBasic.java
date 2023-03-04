@@ -70,10 +70,11 @@ public class ConsoleMainMenuBasic implements ConsoleMainMenu{
         if(entities.size() == 0){
             util.requestToContinue(menu.notFound);
         }
-        for (Entity entity : entities) {
-            util.showText(entity.getData());
+        else {
+            for (Entity entity : entities) util.showText(entity.getData());
+            util.requestToContinue("");
         }
-        util.requestToContinue("");
+        
     }
     
 }

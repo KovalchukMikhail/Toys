@@ -75,5 +75,28 @@ public class ControllerBasic implements Controller{
         infrastructure.addEntityToGameList(entity);
     }
 
+    @Override
+    public String getGameEntityList() {
+        String data = infrastructure.getGameEntityList();
+        data = data.isEmpty() ? "Список пуст": data;
+        return data;
+    }
+
+    @Override
+    public boolean trySetEntityByIdForGame(int id) {
+        return infrastructure.trySetEntityByIdForGame(id);
+    }
+
+    public boolean trySetEntityByIndexForGame(int index){
+        return infrastructure.trySetEntityByIndexForGame(index);
+    }
+
+    public boolean tryRemoveEntityByIdFromGameList(int id){
+        return infrastructure.tryRemoveEntityByIdFromGameList(id);
+    }
+
+    public void tryRemoveAllEntityFromGameList(){
+        infrastructure.tryRemoveAllEntityFromGameList();
+    }
     
 }

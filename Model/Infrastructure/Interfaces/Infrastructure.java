@@ -31,4 +31,14 @@ public interface Infrastructure {
     public void addEntityToGameList(Entity entity);
 
     public void removeEntityFromGameList(Entity entite);
+
+    public String getGameEntityList();
+
+    public boolean trySetEntityByIdForGame(int id);
+
+    public boolean trySetEntityByIndexForGame(int index);
+
+    public boolean tryRemoveEntityByIdFromGameList(int id);
+
+    public void tryRemoveAllEntityFromGameList();
 }

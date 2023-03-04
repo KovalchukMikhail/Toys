@@ -33,13 +33,13 @@ public class ConsoleGameMenuBasic implements ConsoleGameMenu{
                     tryAddEntityToGameList();
                     break;
                 case 3:
-                    // showEntityGameList(controller.getEntityGameList());
+                    showEntityGameList();
                     break;
                 case 4:
-                    trySelectEntityByIdForGame();
+                    trySetEntityByIdForGame();
                     break;
                 case 5:
-                    trySelectEntityByIndexForGame();
+                    trySetEntityByIndexForGame();
                     break;
                 case 6:
                     tryRemoveEntityByIdFromGameList();
@@ -83,24 +83,36 @@ public class ConsoleGameMenuBasic implements ConsoleGameMenu{
     }
 
 
-    public void showEntityGameList(List entities){
-        
+    public void showEntityGameList(){
+        util.requestToContinue(controller.getGameEntityList());
     }
 
-    public void trySelectEntityByIdForGame(){
-
+    public void trySetEntityByIdForGame(){
+        util.showText(menu.requestId);
+        int id = util.inputInt();
+        if (id == 0) return;
+        if(controller.trySetEntityByIdForGame(id)) util.requestToContinue(menu.success);
+        else util.requestToContinue(menu.errorText);
     }
 
-    public void trySelectEntityByIndexForGame(){
-
+    public void trySetEntityByIndexForGame(){
+        util.showText(menu.requestIndex);
+        int index = util.inputInt();
+        if (index == 0) return;
+        if(controller.trySetEntityByIndexForGame(index)) util.requestToContinue(menu.success);
+        else util.requestToContinue(menu.errorText);
     }
 
     public void tryRemoveEntityByIdFromGameList(){
-
+        util.showText(menu.requestId);
+        int id = util.inputInt();
+        if (id == 0) return;
+        if(controller.tryRemoveEntityByIdFromGameList(id)) util.requestToContinue(menu.success);
+        else util.requestToContinue(menu.errorText);
     }
 
     public void RemoveAllEntityFromGameList(){
-
+        if(util.checkMenu()) controller.tryRemoveAllEntityFromGameList();
     }
     
 }

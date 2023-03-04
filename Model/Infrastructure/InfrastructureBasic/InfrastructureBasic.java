@@ -85,4 +85,29 @@ public class InfrastructureBasic implements Infrastructure{
     public void removeEntityFromGameList(Entity entite) {
         game.removeAwardbyId(entite.getId());
     }
+
+    @Override
+    public String getGameEntityList() {
+        return game.getAllAwardData();
+    }
+
+    @Override
+    public boolean trySetEntityByIdForGame(int id) {
+        return game.setAwordById(id);
+    }
+
+    @Override
+    public boolean trySetEntityByIndexForGame(int index) {
+        return game.setAwardByIndex(index);
+    }
+
+    @Override
+    public boolean tryRemoveEntityByIdFromGameList(int id) {
+        return game.removeAwardbyId(id);
+    }
+
+    @Override
+    public void tryRemoveAllEntityFromGameList() {
+        game.removeAllAwards();
+    }
 }
